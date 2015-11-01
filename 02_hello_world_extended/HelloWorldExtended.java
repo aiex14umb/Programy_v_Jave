@@ -14,12 +14,9 @@ public class HelloWorldExtended {
 		System.out.println("Hello, World!\n");
 
 		for(int n=1; n<=100; n++){
-			System.out.print(n);
-			if(n!=100){
-				System.out.print(" ");
-			}else{
-				System.out.println();
-			}
+			System.out.print(n + " ");
 		}
+
+		System.out.println();
 	}
 }
