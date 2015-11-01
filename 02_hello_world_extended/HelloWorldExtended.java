@@ -19,6 +19,10 @@ public class HelloWorldExtended {
 	public static void main(String[] args) {
 		System.out.println("Hello, World!\n");
 
+<<<<<<< HEAD
+		for(int n=1; n<=100; n++){
+			System.out.print(n + " ");
+=======
 		for(int n = 1; n <= 100; n++) {
 			System.out.println(n + " ");
 
@@ -45,6 +49,9 @@ public class HelloWorldExtended {
 				System.out.println();
 			}
 			*/
+>>>>>>> 421084f56cd4b2452dd47fba8bf763912dacd456
 		}
+
+		System.out.println();
 	}
 }
