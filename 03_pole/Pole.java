@@ -19,17 +19,13 @@ public class Pole {
 		Random randomCeleCislo = new Random();
 
 		System.out.print("Zadajte pocet cislic: ");
-		final int pocet = vstup.nextInt(); // final je konštanta, pretože pole by sa malo raz inicializovať a už 
-		// by sa táto konštanta pocet nemala dať zmeniť, preto je tam kľúčové slovo final
+		final int pocet = vstup.nextInt();
 
 		int pole[] = new int[pocet];
 
-		vstup.close(); // treba uzavrieť inštanciu skenera, ak si s ňou už dorobil, niekedy to robí problémy alebo len 
-		// spomaľuje program 
+		vstup.close(); 
 		
-		for (int i=0; i<pole.length; i++){ // nie premenná v ktorej je počet, ale vždy konečná dĺžka poľa
-			// môže sa stať, že dĺžku poľa ti zmení nejaká extzerná funkcia ak budeš mať <pole tak máš problém
-			// ak <pole.length tak je to v pohode
+		for (int i=0; i<pole.length; i++){
 			pole[i] = randomCeleCislo.nextInt(100);
 		}
 
