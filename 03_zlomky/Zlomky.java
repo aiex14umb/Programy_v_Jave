@@ -5,77 +5,81 @@
  * execution:		java Zlomky
  *
  * purpose:			addition of two fractions
- *						
+ * 
+ * Toto ti viem "spraviť" len tak, že to takmer celé prepíšem, lebo ty vôbec nerobíš OOP.
+ * Opäť sa budem snažiť o najjednoduhšie riešenie nie o najlepšie.			
  */
 
 import java.util.Scanner;
-import java.util.regex.*;
-
-public Zlomok scitaj(Zlomok zlom2) {
-		int cit = (citatel * zlom2.menovatel) + (zlom2.citatel * menovatel);
-		int menov = (menovatel * zlom2.menovatel);
-		
-		return new Zlomok(cit, menov);
-}
-
 
 public class Zlomky {
+	// pre jednoduchosť dávam všade public...
+	public static Scanner vstup = new Scanner(System.in); // prem. triedy
+	public int citatel; // prem. inštancie
+	public int menovatel; // prem. inštancie
+	
 	public static void main(String[] args){
-		Scanner vstup = new Scanner(System.in);
-		Pattern whitespace=vstup.delimiter();  // set to default (whitespace) delimiter
+		/*
+		 * Vytvorenie prvého zlomku 
+		 */
+		// nová inštancie typu Zlomky, toto je základ
+		Zlomky zlomok1 = new Zlomky(); 
 		
-		System.out.print("Zadajte prvy zlomok v tvare a/b: ");
-		vstup.useDelimiter("/");  // set delimiter to `/'
-		int zlomokCitatelA = vstup.nextInt();
-		String t1 = vstup.findWithinHorizon(".",0);  // read delimiter
-		vstup.useDelimiter(whitespace);  // set delimiter back to whitespace
-		int zlomokMenovatelA = vstup.nextInt();
-		vstup.nextLine();
-
-		System.out.print("Zadajte druhy zlomok v tvare a/b: ");
-		vstup.useDelimiter("/");
-		int zlomokCitatelB = vstup.nextInt();
-		String t2 = vstup.findWithinHorizon(".",0);
-		vstup.useDelimiter(whitespace);
-		int zlomokMenovatelB = vstup.nextInt();
-		vstup.close();
-		System.out.println();
-
-		// Addition
-		int menovatel = zlomokMenovatelA * zlomokMenovatelB;
-		int citatel = zlomokCitatelA * zlomokMenovatelB + zlomokCitatelB * zlomokMenovatelA;
-
-		// Reduce to lowest terms
-		// using Euclid’s algorithm to find greatest common divisor
-		int a = Math.abs (citatel);
-		int b = Math.abs (menovatel);
-		int zvysok = a % b;
-		while (zvysok > 0){
-			a = b;
-			b = zvysok;
-			zvysok = a % b;
-		}
-
-		menovatel /= b;
-		citatel /= b;
-
-		int integer=0, citatel_new=0;
-		// Create mixed numerals
-		if (args[0]=="-mixed"){
-			integer = citatel/menovatel;
-			citatel_new = citatel % menovatel;
-			citatel = citatel_new;
-		}
-
-		System.out.println(args[0]);
-		if (args[0]=="-mixed"){
-			if (menovatel == 1){  // e.g., 500/5 + 400/100 = 104
-				System.out.println(zlomokCitatelA + "/" + zlomokMenovatelA + " + " + zlomokCitatelB + "/" + zlomokMenovatelB + " = " + integer);
-			}else{
-				System.out.println(zlomokCitatelA + "/" + zlomokMenovatelA + " + " + zlomokCitatelB + "/" + zlomokMenovatelB + " = " + integer + " " + citatel_new + "/" + menovatel);
-			}
-		}else{
-			System.out.println(zlomokCitatelA + "/" + zlomokMenovatelA + " + " + zlomokCitatelB + "/" + zlomokMenovatelB + " = " + citatel + "/" + menovatel);
-		}
+		// načítanie čitateľa a menovateľa
+		System.out.print("Zadaj čitateľa: ");
+		zlomok1.citatel = vstup.nextInt();
+		System.out.print("Zadaj menovateľa: ");
+		zlomok1.menovatel = vstup.nextInt();
+		
+		// výpis zlomku v bežnom tvare
+		System.out.println("Zlomok 1: " + zlomok1.citatel + "/" + zlomok1.menovatel + "\n");
+		
+		/* 
+		 * Vytvorenie druhého zlomku 
+		 */
+		// nová inštancie typu Zlomky, toto je základ
+		Zlomky zlomok2 = new Zlomky(); 
+		
+		// načítanie čitateľa a menovateľa
+		System.out.print("Zadaj čitateľa: ");
+		zlomok2.citatel = vstup.nextInt();
+		System.out.print("Zadaj menovateľa: ");
+		zlomok2.menovatel = vstup.nextInt();
+		
+		// výpis zlomku v bežnom tvare
+		System.out.println("Zlomok 2: " + zlomok2.citatel + "/" + zlomok2.menovatel + "\n");
+		
+		/*
+		 * Teraz konečne použijeme našu metódu sčítaj, ktorej výsledok bude nová inštancia.
+		 */
+		Zlomky zlom3 = scitaj(zlomok1, zlomok2);
+		System.out.print("Zlomok3: " + zlom3.citatel + "/" + zlom3.menovatel);
+	}
+	
+	/*
+	 * Podľa zadania máš vytvoriť metódu scitaj() ktorá vráti novú inštanciu typu Zlomky
+	 * takže si tú metódu musíme naprogramovať :)
+	 */
+	// vytvorili sme verejnú funkciu s názvom sčítaj, ktorá vracia typ: Zlomky a berie 
+	// ako svoj parameter premennú zlom ktorá je tiež typu Zlomky
+	// P.S.: Typ Zlomky je nami vytvorený dátový typ v podstate je to to isté, ako int, char, boolean a pod.
+	
+	/**
+	 * Sčíta dva zlomky
+	 * 
+	 * @param zlom - prvý zlomok
+	 * @param zlom2 - druhý zlomok
+	 *  
+	 * @return - inštancia obsahujúca súčet zlomkov
+	 */
+	public static Zlomky scitaj(Zlomky zlom, Zlomky zlom2) {
+		Zlomky zlomok = new Zlomky();
+		
+		zlomok.citatel = (zlom.citatel * zlom2.menovatel) 
+				+ (zlom2.citatel * zlom.menovatel);
+		zlomok.menovatel = (zlom.menovatel * zlom2.menovatel);
+		
+		// a konečne o čom je celá úloha vrátimue NOVÚ INŠTANCIU typu Zlomky
+		return zlomok;
 	}
 }
