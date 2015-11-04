@@ -1,5 +1,5 @@
 /*
- * 02 Pole
+ * 03 Zlomky
  *
  * compilation:	javac Zlomky.java
  * execution:		java Zlomky
@@ -12,7 +12,7 @@
 
 import java.util.Scanner;
 import java.util.regex.*;
-import java.lang.Math.abs;
+//import java.lang.Math.abs;
 
 public class Zlomky {
 	// pre jednoduchosť dávam všade public...
@@ -44,7 +44,7 @@ public class Zlomky {
 		System.out.print("Zadajte druhy zlomok v tvare a/b: ");
 		vstup.useDelimiter("/");  // set delimiter to `/'
 		zlomok2.citatel = vstup.nextInt();
-		String t1 = vstup.findWithinHorizon(".",0);  // read delimiter
+		String t2 = vstup.findWithinHorizon(".",0);  // read delimiter
 		vstup.useDelimiter(whitespace);  // set delimiter back to whitespace
 		zlomok2.menovatel = vstup.nextInt();
 		vstup.close();
