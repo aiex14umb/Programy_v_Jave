@@ -1,6 +1,8 @@
 /*
  * 02 Pole
  *
+ * version:			1.0
+ *
  * compilation:	javac Pole.java
  * execution:		java Pole
  *
@@ -19,34 +21,28 @@ public class Pole {
 		Random randomCeleCislo = new Random();
 
 		System.out.print("Zadajte pocet cislic: ");
-		int pocet = vstup.nextInt();
+		final int pocet = vstup.nextInt();
 
 		int pole[] = new int[pocet];
 
-		for (int i=0; i<pocet; i++){
+		vstup.close(); 
+		
+		for (int i=0; i<pole.length; i++){
 			pole[i] = randomCeleCislo.nextInt(100);
 		}
 
 		System.out.println("Pred zoradenim:");
-		for (int i=0; i<pocet; i++){
-			System.out.print(pole[i]);
-			if ((i+1)==pocet){
-				System.out.println("\n");
-			}else{
-				System.out.print(" ");
-			}
+		for (int i=0; i<pole.length; i++){
+			System.out.print(pole[i] + " ");
 		}
+		System.out.println();
 
 		Arrays.sort(pole);
 
 		System.out.println("Po zoradeni:");
-		for (int i=0; i<pocet; i++){
-			System.out.print(pole[i]);
-			if ((i+1)==pocet){
-				System.out.println();
-			}else{
-				System.out.print(" ");
-			}
+		for (int i=0; i<pocet.length; i++){
+			System.out.print(pole[i] + " ");
 		}
+		System.out.println();
 	}
 }

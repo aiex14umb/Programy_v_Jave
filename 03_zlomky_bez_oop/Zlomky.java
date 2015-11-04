@@ -10,6 +10,15 @@
 
 import java.util.Scanner;
 import java.util.regex.*;
+//import java.lang.Math.*;
+
+/*public Zlomok scitaj(Zlomok zlom2) {
+		int cit = (citatel * zlom2.menovatel) + (zlom2.citatel * menovatel);
+		int menov = (menovatel * zlom2.menovatel);
+		
+		return new Zlomok(cit, menov);
+}*/
+
 
 public class Zlomky {
 	public static void main(String[] args){
@@ -30,6 +39,7 @@ public class Zlomky {
 		String t2 = vstup.findWithinHorizon(".",0);
 		vstup.useDelimiter(whitespace);
 		int zlomokMenovatelB = vstup.nextInt();
+		vstup.close();
 		System.out.println();
 
 		// Addition
@@ -47,11 +57,26 @@ public class Zlomky {
 			zvysok = a % b;
 		}
 
-//		System.out.println("gcd = " + b);  // b is gcd value
-
 		menovatel /= b;
 		citatel /= b;
 
-		System.out.println(+zlomokCitatelA + "/" + zlomokMenovatelA + " + " + zlomokCitatelB + "/" + zlomokMenovatelB + " = " + citatel + "/" + menovatel);
+		int integer=0, citatel_new=0;
+		// Create mixed numerals
+	//	if (args[0]=="-mixed"){
+			integer = citatel/menovatel;
+			citatel_new = citatel % menovatel;
+			citatel = citatel_new;
+	//	}
+
+		System.out.println(args[0]);
+		if (args[0]=="-mixed"){
+			if (menovatel == 1){  // e.g., 500/5 + 400/100 = 104
+				System.out.println(zlomokCitatelA + "/" + zlomokMenovatelA + " + " + zlomokCitatelB + "/" + zlomokMenovatelB + " = " + integer);
+			}else{
+				System.out.println(zlomokCitatelA + "/" + zlomokMenovatelA + " + " + zlomokCitatelB + "/" + zlomokMenovatelB + " = " + integer + " " + citatel_new + "/" + menovatel);
+			}
+		}else{
+			System.out.println(zlomokCitatelA + "/" + zlomokMenovatelA + " + " + zlomokCitatelB + "/" + zlomokMenovatelB + " = " + citatel + "/" + menovatel);
+		}
 	}
 }
