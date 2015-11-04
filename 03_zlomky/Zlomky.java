@@ -1,7 +1,7 @@
 /*
  * 03 Zlomky
  *
- * version:			0.5
+ * version:			0.5.1
  *
  * compilation:	javac Zlomky.java
  * execution:		java Zlomky
