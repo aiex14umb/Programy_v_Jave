@@ -1,13 +1,14 @@
 /*
  * 03 Zlomky
  *
+ * version:			0.5
+ *
+ *
  * compilation:	javac Zlomky.java
  * execution:		java Zlomky
  *
  * purpose:			addition of two fractions
  * 
- * Toto ti viem "spraviť" len tak, že to takmer celé prepíšem, lebo ty vôbec nerobíš OOP.
- * Opäť sa budem snažiť o najjednoduhšie riešenie nie o najlepšie.			
  */
 
 import java.util.Scanner;
@@ -22,6 +23,7 @@ public class Zlomky {
 	public int menovatel; // prem. inštancie
 	
 	public static void main(String[] args){
+		String option = args[0];
 		/*
 		 * Vytvorenie prvého zlomku 
 		 */
@@ -54,6 +56,7 @@ public class Zlomky {
 		 * Teraz konečne použijeme našu metódu sčítaj, ktorej výsledok bude nová inštancia.
 		 */
 		Zlomky zlom3 = scitaj(zlomok1, zlomok2);
+
 		System.out.print("Zlomok3: " + zlom3.citatel + "/" + zlom3.menovatel);
 	}
 	
@@ -86,10 +89,10 @@ public class Zlomky {
 		return vysledok;
 	}
 
-	public static Zlomky zjednodus(Zlomky zlomok){
+	public static Zlomky zjednodus(Zlomky zlomok){  // Simplify a fraction
 		Zlomky zlom_pom = new Zlomky();
-		zlom_pom.citatel = Math.abs (zlomok.citatel);
-		zlom_pom.menovatel = Math.abs (zlomok.menovatel);
+		zlom_pom.citatel = abs(zlomok.citatel);
+		zlom_pom.menovatel = abs(zlomok.menovatel);
 		int zvysok = zlom_pom.citatel % zlom_pom.menovatel;
 		while (zvysok > 0){
 			zlom_pom.citatel = zlom_pom.menovatel;
@@ -100,6 +103,18 @@ public class Zlomky {
 		zlomok.menovatel /= zlom_pom.menovatel;
 		zlomok.citatel /= zlom_pom.menovatel;
 
-		return zlom_pom;
+		if (option=="-mixed"){
+			Zlomky zlozity = zlozitopis(zlom_pom);
+			return zlozity;
+		}else{
+			return zlom_pom;
+		}
+	}
+
+	public static Zlomky zlozitopis(Zlomky zlomok){  // Create mixed numerals
+		Zlomky zloz = new Zlomky();
+		int integer = zlomok.citatel / zlomok.menovatel;
+		zloz.citatel = zlomok.citatel % zlomok.menovatel;
+		zloz.menovatel = zlomok.menovatel;
 	}
 }

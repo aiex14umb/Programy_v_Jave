@@ -10,13 +10,14 @@
 
 import java.util.Scanner;
 import java.util.regex.*;
+//import java.lang.Math.*;
 
-public Zlomok scitaj(Zlomok zlom2) {
+/*public Zlomok scitaj(Zlomok zlom2) {
 		int cit = (citatel * zlom2.menovatel) + (zlom2.citatel * menovatel);
 		int menov = (menovatel * zlom2.menovatel);
 		
 		return new Zlomok(cit, menov);
-}
+}*/
 
 
 public class Zlomky {
@@ -61,11 +62,11 @@ public class Zlomky {
 
 		int integer=0, citatel_new=0;
 		// Create mixed numerals
-		if (args[0]=="-mixed"){
+	//	if (args[0]=="-mixed"){
 			integer = citatel/menovatel;
 			citatel_new = citatel % menovatel;
 			citatel = citatel_new;
-		}
+	//	}
 
 		System.out.println(args[0]);
 		if (args[0]=="-mixed"){
