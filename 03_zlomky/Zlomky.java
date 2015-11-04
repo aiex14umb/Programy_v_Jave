@@ -11,10 +11,13 @@
  */
 
 import java.util.Scanner;
+import java.util.regex.*;
+import java.lang.Math.abs;
 
 public class Zlomky {
 	// pre jednoduchosť dávam všade public...
 	public static Scanner vstup = new Scanner(System.in); // prem. triedy
+	public static 1Pattern whitespace=vstup.delimiter();  // set to default (whitespace) delimiter
 	public int citatel; // prem. inštancie
 	public int menovatel; // prem. inštancie
 	
@@ -26,28 +29,26 @@ public class Zlomky {
 		Zlomky zlomok1 = new Zlomky(); 
 		
 		// načítanie čitateľa a menovateľa
-		System.out.print("Zadaj čitateľa: ");
+		System.out.print("Zadajte prvy zlomok v tvare a/b: ");
+		vstup.useDelimiter("/");  // set delimiter to `/'
 		zlomok1.citatel = vstup.nextInt();
-		System.out.print("Zadaj menovateľa: ");
+		String t1 = vstup.findWithinHorizon(".",0);  // read delimiter
+		vstup.useDelimiter(whitespace);  // set delimiter back to whitespace
 		zlomok1.menovatel = vstup.nextInt();
-		
-		// výpis zlomku v bežnom tvare
-		System.out.println("Zlomok 1: " + zlomok1.citatel + "/" + zlomok1.menovatel + "\n");
-		
-		/* 
-		 * Vytvorenie druhého zlomku 
-		 */
+		vstup.nextLine();
+
 		// nová inštancie typu Zlomky, toto je základ
 		Zlomky zlomok2 = new Zlomky(); 
 		
 		// načítanie čitateľa a menovateľa
-		System.out.print("Zadaj čitateľa: ");
+		System.out.print("Zadajte druhy zlomok v tvare a/b: ");
+		vstup.useDelimiter("/");  // set delimiter to `/'
 		zlomok2.citatel = vstup.nextInt();
-		System.out.print("Zadaj menovateľa: ");
+		String t1 = vstup.findWithinHorizon(".",0);  // read delimiter
+		vstup.useDelimiter(whitespace);  // set delimiter back to whitespace
 		zlomok2.menovatel = vstup.nextInt();
-		
-		// výpis zlomku v bežnom tvare
-		System.out.println("Zlomok 2: " + zlomok2.citatel + "/" + zlomok2.menovatel + "\n");
+		vstup.close();
+		System.out.println();
 		
 		/*
 		 * Teraz konečne použijeme našu metódu sčítaj, ktorej výsledok bude nová inštancia.
@@ -78,8 +79,26 @@ public class Zlomky {
 		zlomok.citatel = (zlom.citatel * zlom2.menovatel) 
 				+ (zlom2.citatel * zlom.menovatel);
 		zlomok.menovatel = (zlom.menovatel * zlom2.menovatel);
+
+		Zlomok vysledok = zjednodus(zlomok);
 		
 		// a konečne o čom je celá úloha vrátimue NOVÚ INŠTANCIU typu Zlomky
 		return zlomok;
+	}
+
+	public static Zlomky zjednodus(Zlomky zlomok){
+		int a = Math.abs (zlomok.citatel);
+		int b = Math.abs (zlomok.menovatel);
+		int zvysok = a % b;
+		while (zvysok > 0){
+			a = b;
+			b = zvysok;
+			zvysok = a % b;
+		}
+
+		zlomok.menovatel /= b;
+		zlomok.citatel /= b;
+
+		return (zlomok.citatel, zlomok.menovatel);
 	}
 }
