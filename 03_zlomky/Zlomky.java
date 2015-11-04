@@ -12,7 +12,7 @@
 
 import java.util.Scanner;
 import java.util.regex.*;
-//import java.lang.Math.abs;
+import static java.lang.Math.abs;
 
 public class Zlomky {
 	// pre jednoduchosť dávam všade public...
@@ -80,27 +80,26 @@ public class Zlomky {
 				+ (zlom2.citatel * zlom.menovatel);
 		zlomok.menovatel = (zlom.menovatel * zlom2.menovatel);
 
-		Zlomok vysledok = zjednodus(zlomok);
+		Zlomky vysledok = zjednodus(zlomok);  // priradit hodnotu zjednodus();
 		
 		// a konečne o čom je celá úloha vrátimue NOVÚ INŠTANCIU typu Zlomky
-		return zlomok;
+		return vysledok;
 	}
 
 	public static Zlomky zjednodus(Zlomky zlomok){
-		int a = Math.abs (zlomok.citatel);
-		int b = Math.abs (zlomok.menovatel);
-		int zvysok = a % b;
+		Zlomky zlom_pom = new Zlomky();
+		zlom_pom.citatel = Math.abs (zlomok.citatel);
+		zlom_pom.menovatel = Math.abs (zlomok.menovatel);
+		int zvysok = zlom_pom.citatel % zlom_pom.menovatel;
 		while (zvysok > 0){
-			a = b;
-			b = zvysok;
-			zvysok = a % b;
+			zlom_pom.citatel = zlom_pom.menovatel;
+			zlom_pom.menovatel = zvysok;
+			zvysok = zlom_pom.citatel % zlom_pom.menovatel;
 		}
 
-		zlomok.menovatel /= b;
-		zlomok.citatel /= b;
+		zlomok.menovatel /= zlom_pom.menovatel;
+		zlomok.citatel /= zlom_pom.menovatel;
 
-		Zlomky zjednoduseny = new Zlomky();
-
-		return (zjednoduseny);
+		return zlom_pom;
 	}
 }
