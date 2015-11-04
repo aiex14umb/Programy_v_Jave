@@ -16,14 +16,16 @@ import java.util.regex.*;
 import static java.lang.Math.abs;
 
 public class Zlomky {
-	// pre jednoduchosť dávam všade public...
-	public static Scanner vstup = new Scanner(System.in); // prem. triedy
+	// Use public to make it simple (not always the best choice)
+	public static Scanner vstup = new Scanner(System.in);  // class variable
 	public static Pattern whitespace=vstup.delimiter();  // set to default (whitespace) delimiter
-	public int citatel; // prem. inštancie
-	public int menovatel; // prem. inštancie
+	public int citatel;  // instance (i.e. class variable’s) variable
+	public int menovatel;  // instance (i.e. class variable’s) variable
 	
 	public static void main(String[] args){
-		String option = args[0];
+		if (args[0] == "-mixed"){
+			public static = 1;
+		}
 		/*
 		 * Vytvorenie prvého zlomku 
 		 */
@@ -103,7 +105,7 @@ public class Zlomky {
 		zlomok.menovatel /= zlom_pom.menovatel;
 		zlomok.citatel /= zlom_pom.menovatel;
 
-		if (option=="-mixed"){
+		if (option==1){
 			Zlomky zlozity = zlozitopis(zlom_pom);
 			return zlozity;
 		}else{
