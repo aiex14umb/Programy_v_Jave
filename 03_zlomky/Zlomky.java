@@ -17,7 +17,7 @@ import java.lang.Math.abs;
 public class Zlomky {
 	// pre jednoduchosť dávam všade public...
 	public static Scanner vstup = new Scanner(System.in); // prem. triedy
-	public static 1Pattern whitespace=vstup.delimiter();  // set to default (whitespace) delimiter
+	public static Pattern whitespace=vstup.delimiter();  // set to default (whitespace) delimiter
 	public int citatel; // prem. inštancie
 	public int menovatel; // prem. inštancie
 	
@@ -99,6 +99,8 @@ public class Zlomky {
 		zlomok.menovatel /= b;
 		zlomok.citatel /= b;
 
-		return (zlomok.citatel, zlomok.menovatel);
+		Zlomky zjednoduseny = new Zlomky();
+
+		return (zjednoduseny);
 	}
 }
